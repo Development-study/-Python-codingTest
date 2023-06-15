@@ -6,14 +6,23 @@ def solution(m, array):
 
     d = [0] * len(array) 
 
+    same_list = [0] * m
     for a in range(0, len(array)):
         d[a] = (d[a - 1] + array[a]) % m
         if d[a] == 0:
             answer += 1
 
-    for c in combinations(d, 2):
-        if c[0] == c[1]:
-            answer += 1
+        same_list[d[a]] += 1
+
+    # 구현식 사용 방식
+    for i in range(m):
+        if same_list[i] > 1:
+            answer += (same_list[i] * (same_list[i] - 1) // 2)
+
+    # 라이브러리 사용 방식
+    # for c in combinations(d, 2):
+    #     if c[0] == c[1]:
+    #         answer += 1
 
     return answer
 
