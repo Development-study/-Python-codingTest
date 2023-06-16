@@ -40,7 +40,7 @@ a[1:4] # 슬라이싱 / [2,3,4]
 array = [i for i in range(20) if i % 2 == 1] # 0에서 19까지 중 홀수만 포함하는 리스트
 
 # 2차원 배열을 초기화할 때 효과적이다
-array = [[0] * m for _ in range(n) ] # [[0,0,0,0],[0,0,0,0], [0,0,0,0]]
+array = [[0] * n for _ in range(n) ] # [[0,0,0,0],[0,0,0,0], [0,0,0,0]]
 
 a = [1,4,3]
 
@@ -145,3 +145,165 @@ print( (lambda a, b: a + b)(3,7) )
 # math
 #   필수적인 수학적 기능을 제공하는 라이브러리
 #   팩토리얼, 제곱급, 최대공약수(GCD), 삼각함수, 파이(pi)
+
+# 내장 함수
+result = [1,2,3,4,5]
+
+sum(result) #iterable 객체가 들어왔을 때 (반복 가능한 객체) 리스트, 사전자료형, 튜플자료형 등
+
+min(7,3,5,2)
+
+max(7,3,5,2)
+
+result = eval( "(3+5) * 7" )
+print(result)
+
+result = sorted([9,1,8,5,4]) # 오름차순 정렬
+result = sorted([9,1,5,1,4], reverse=True) # 기존 객체는 변경되지 않으며 return 값이 존재한다.
+
+result.sort() # void 문이다 result가 변경된다.
+
+data = [('홍길동', 35), ('이순신', 17), ('아무개', 88)]
+result = sorted(data, key = lambda x : x[1], reverse = True)
+print(result)
+
+# 위와 같은 값을 가진다.
+data.sort(key = lambda x: x[1], reverse = True)
+print(data)
+
+data = ["23", "59", "59"]
+print(":".join(data))
+# 23:59:59
+
+# itertools : 반복되는 데이터를 처리하는 기능을 포함하고 있는 라이브러리
+# permutations (순열)
+# combinations (조합)
+# product (중복을 허용하는 순열)
+# combinations_with_replacement (중복을 허용하는 모든 조합)
+from itertools import permutations, combinations, product, combinations_with_replacement
+
+data = ['a', 'b', 'c'] # 데이터 준비
+
+# 리스트에서 3개를 뽑아 나열하는 모든 경우를 출력
+result = list(permutations(data,3)) # 모든 순열 구하기
+
+print(result)
+
+result = list(combinations(data,2)) # 2개를 뽑는 모든 조합 구하기
+
+print(result)
+
+result = list(product(data,repeat = 2)) # 2개를 뽑는 모든 순열 구하기 (중복 허용)
+
+print (result)
+
+result = list(combinations_with_replacement(data,2)) # 2개를 뽑는 모든 조합 구하기 (중복 허용)
+
+print (result)
+
+# heapq : 힙기능을 위해 heapq 라이브러리를 제공
+# heapq.heappush() 삽입
+# heapq.heappop() 꺼냄
+import heapq
+
+def heapsort(iterable):
+      h = []
+      result = []
+      # 모든 원소를 차례대로 힙에 삽입
+      for value in iterable:
+              heapq.heappush(h, value)
+      # 힙에 삽입된 모든 원소를 차례대로 꺼내어 담기
+      for i in range(len(h)):
+              result.append(heapq.heappop(h))
+      return result
+
+result = heapsort([1,3,5,7,9,2,4,6,8,0])
+print(result)
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# 부호를 사용하여 최대 힙(max heap) 구현
+def heapsort(iterable):
+      h = []
+      result = []
+      # 모든 원소를 차례대로 힙에 삽입
+      for value in iterable:
+              heapq.heappush(h, -value)
+      # 힙에 삽입된 모든 원소를 차례대로 꺼내어 담기
+      for i in range(len(h)):
+              result.append(-heapq.heappop(h))
+      return result
+
+result = heapsort([1,3,5,7,9,2,4,6,8,0])
+print(result)
+#[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+
+# bisect : 이진탐색을 쉽게 구현할 수 있도록하는 라이브러리
+# bisect_left(a,x)
+#   정렬된 순서를 유지하면서 리스트 a에 데이터 x를 삽입할 가장 왼쪽 인덱스를 찾는 메서드
+# bisect_right(a,x)
+#   정렬된 순서를 유지하면서 리스트 a에 데이터 x를 삽입할 가장 오른쪽 인덱스를 찾는 메서드
+from bisect import bisect_left, bisect_right
+
+a = [1, 2, 4, 4, 8]
+x = 4
+
+print(bisect_left(a, x))  # 2
+print(bisect_right(a, x)) # 4
+
+#'정렬된 리스트'에서 '값이 특정 범위에 속하는 원소의 개수'를 구하고자 할 때 사용
+
+def count_by_range(a, left_value, right_value):
+        right_index = bisect_right(a, right_value)
+        left_index = bisect_left(a, left_value)
+        return right_index - left_index
+
+# 리스트 선언
+a = [1, 2, 3, 3, 3, 3, 4, 4, 8, 9]
+
+# 값이 4인 데이터 개수 출력
+print(count_by_range(a, 4, 4))       # 2
+
+# 값이 [-1, 3] 범위에 있는 데이터 개수 출력
+print(count_by_range(a, -1, 3))      # 6
+
+# collections : 유용한 자료구조를 제공하는 표준 라이브러리
+
+# deque
+# 스택, 큐를 구현할 때 사용하는 라이브러리
+from collections import deque
+
+data = deque([2,3,4])
+data.appendleft(1)
+data.append(5)
+
+data.pop()
+data.popleft()
+
+print(data)  # deque([2, 3, 4])
+print(list(data)) # [2, 3, 4]
+
+# Counter
+# 등장 횟수를 세는 기능을 제공
+from collections import Counter
+
+counter = Counter(['red', 'blue', 'green', 'blue', 'blue'])
+
+print(counter['blue']) # 'blue'가 등장한 횟수 출력
+print(dict(counter)) # 사전 자료형으로 변환 list,set도 가능하고 두개가 같은 값을 가진다
+
+# 3
+# {'red': 1, 'blue': 3, 'green': 1}
+
+# math :수학적인 기능을 포함하고 있는 라이브러리
+# 팩토리얼, 제곱근, 최대공약수(GCD) , Pi
+import math
+
+print(math.factorial(5)) # 5 팩토리얼 출력
+
+print(math.sqrt(7)) # 7의 제곱근 출력
+
+print(math.gcd(21,14)) # 21과 14의 최대 공약수 , 7
+
+print(math.pi) # 파이 출력
+
+print(math.e) # 자연상수 출력
