@@ -1,8 +1,14 @@
 # 두 원 사이의 정수 쌍
 
+from math import sqrt
+
 def solution(r1, r2):
-    answer = 0
-    return answer
+    quar = 0
+    for i in range(0, r1):
+        quar += int(sqrt(r2**2 - i**2)) - int(sqrt(r1**2 - i**2 - 1))
+    for i in range(r1, r2):
+        quar += int(sqrt(r2**2 - i**2))
+    return quar * 4
 
 
 # x축과 y축으로 이루어진 2차원 직교 좌표계에 중심이 원점인 서로 다른 크기의 원이 두 개 주어집니다. 
