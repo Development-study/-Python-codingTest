@@ -307,3 +307,37 @@ print(math.gcd(21,14)) # 21과 14의 최대 공약수 , 7
 print(math.pi) # 파이 출력
 
 print(math.e) # 자연상수 출력
+
+
+array1 = [1, 2, 3, 4]
+array2 = [4, 3, 2, 1]
+print(list(zip(array1, array2))) # 앞에랑 뒤의 리스트를 인덱스끼리 합침
+
+print(list(range(19))) # 0부터 18까지의 리스트를 생성
+
+print(bin(2)[2:]) # 2진수로 변환
+print('string'.zfill(10)) # 인수로 넘어간 길이만큼 만들기 위해 앞에 0을 추가
+print('string'.replace('s', 'r')) # 문자를 변경
+
+import re # 정규식 사용 라이브러리
+
+pattern = re.compile(r'[0-9]|10') # 0 부터 10까지 숫자를 리스트로 추출
+pattern2 = re.compile(r'([a-z])') # a 부터 z까지 문자를 리스트로 추출
+pattern3 = re.compile(r'[0-9]{2}') # 0 부터 9까지 숫자를 2개씩 리스트로 추출
+print(pattern.findall('12d1234dsdfa1'))
+print(pattern2.findall('12d1234dsdfa1'))
+print(pattern3.findall('12d1234dsdfa15'))
+
+from collections import deque
+
+list = [0] * 3
+dequeue = deque(list, maxlen=5) # 최대 5개까지 들어갈 수 있는 deque를 생성
+for i in range(1, 7): 
+       dequeue.append(i) # 1부터 6까지 하나씩 넣을 때 최대 개수가 5개라 1이 빠지고 2, 3, 4, 5, 6 이 들어가게 됨
+print(dequeue) # 2, 3, 4, 5, 6
+
+from collections import Counter
+
+list = ['ab', 'bd', 'a', 'c', 'd', 'e', 'a', 'b', 'e']
+print(Counter(list)['a']) # 리스트에서 a의 개수를 셈
+print(dict(Counter(list))) # 개수와 함께 사전형식으로 만듬 key가 리스트 값 value가 갯수
