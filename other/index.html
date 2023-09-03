@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+<body>
+
+	<script type="text/javascript" src="check.js"></script>
+	<header style="position: fixed; top: 0px; left: 0px; width: 100%; height: 50px; 
+	background-color: blue; color: white; text-align: center; line-height: 50px;
+	font-size: 25px ">쇼핑몰 회원관리 ver 1.0 </header>
+	
+	<nav style="position: fixed; top: 50px; left: 0px; width: 100%; height: 30px; 
+	background-color: lightblue; color: white; line-height: 30px; padding-left: 20px">
+	회원등록 &nbsp; &nbsp; 회원목록조회/수정 &nbsp; &nbsp; 회원매출 조회 &nbsp; &nbsp; &nbsp; 홈으로.</nav>
+	
+	<section style="position: fixed; top: 80px; left: 0px; width: 100%; height: 100%;
+	background-color: lightgray;">
+		<h2 style="text-align: center;"> <b>홈쇼핑 회원 등록</b> </h2> <br>
+		<form name="frm" style="display:flex; align-items: center; justify-content: center; text-align: center">
+		
+			<table border="1">
+				<tr>
+					<td>회원번호(자동발생)</td>
+					<td><input type="text" name="custno" readonly /></td>
+				</tr>
+				<tr>
+					<td>회원성명</td>
+					<td><input type="text" name="custname" /></td>
+				</tr>
+				<tr>
+					<td>회원전화</td>
+					<td><input type="text" name="phone" /></td>
+				</tr>
+				<tr>
+					<td>회원주소</td>
+					<td><input type="text" name="address" /></td>
+				</tr>
+				<tr>
+					<td>가입일자</td>
+					<td><input type="text" name="joindate" /></td>
+				</tr>
+				<tr>
+					<td>고객등급[A:VIP,B:일반,C:직원]</td>
+					<td><input type="text" name="grade" /></td>
+				</tr>
+				<tr>
+					<td>도시코드</td>
+					<td><input type="text" name="city" /></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="등록" onclick="return joinCheck()"/>
+						<input type="button" value="조회" />
+					</td>
+				</tr>
+			</table>
+			
+		</form>
+	</section>
+	
+	<footer style="position: fixed; bottom: 0px; left: 0px; width: 100%; height: 35px;
+	background-color: blue; color: white; text-align: center; line-height: 35px;
+	font-size: 15px;">
+		HRDKOREA CopyrightⒸ2016 All rights reserved. human Resources Development Service of Korea.
+	</footer>
+
+</body>
+</html>
